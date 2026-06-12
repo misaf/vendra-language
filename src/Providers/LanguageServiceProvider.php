@@ -9,6 +9,7 @@ use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Foundation\Console\AboutCommand;
+use Misaf\VendraLanguage\Console\Commands\SeedCommand;
 use Misaf\VendraLanguage\LanguagePlugin;
 use Misaf\VendraLanguage\Models\Language;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -26,6 +27,7 @@ final class LanguageServiceProvider extends PackageServiceProvider
                 'create_languages_table',
                 'add_tenant_id_column_to_language_lines_table'
             ])
+            ->hasCommands(SeedCommand::class)
             ->hasInstallCommand(function (InstallCommand $command): void {
                 $command->askToStarRepoOnGitHub('misaf/vendra-language');
             });
