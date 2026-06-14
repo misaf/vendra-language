@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Misaf\VendraLanguage\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
 use Misaf\VendraActivityLog\Concerns\HasDefaultActivityLogOptions;
@@ -23,6 +24,7 @@ use Spatie\TranslationLoader\LanguageLine as SpatieLanguageLine;
  * @property Carbon $updated_at
  */
 #[Hidden(['tenant_id'])]
+#[UseFactory(LanguageLineFactory::class)]
 final class LanguageLine extends SpatieLanguageLine
 {
     use BelongsToTenant;
