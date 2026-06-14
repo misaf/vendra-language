@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Misaf\VendraLanguage\Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Misaf\VendraLanguage\Enums\LanguageLineGroupEnum;
 use Misaf\VendraLanguage\Models\LanguageLine;
@@ -12,10 +13,9 @@ use Misaf\VendraTenant\Models\Tenant;
 /**
  * @extends Factory<LanguageLine>
  */
+#[UseModel(LanguageLine::class)]
 final class LanguageLineFactory extends Factory
 {
-    protected $model = LanguageLine::class;
-
     public function definition(): array
     {
         /** @var LanguageLineGroupEnum $group */
