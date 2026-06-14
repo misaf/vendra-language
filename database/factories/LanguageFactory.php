@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Misaf\VendraLanguage\Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Misaf\VendraLanguage\Models\Language;
@@ -12,10 +13,9 @@ use Misaf\VendraTenant\Models\Tenant;
 /**
  * @extends Factory<Language>
  */
+#[UseModel(Language::class)]
 final class LanguageFactory extends Factory
 {
-    protected $model = Language::class;
-
     public function definition(): array
     {
         $isoCode = $this->faker->unique()->languageCode();
