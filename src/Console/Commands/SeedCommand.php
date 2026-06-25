@@ -6,9 +6,9 @@ namespace Misaf\VendraLanguage\Console\Commands;
 
 use Misaf\VendraLanguage\Database\Seeders\PermissionPolicySeeder;
 use Misaf\VendraLanguage\LanguagePlugin;
-use Misaf\VendraSupport\Console\Commands\BaseSeedCommand;
+use Misaf\VendraTenant\Console\Commands\TenantSeedCommand;
 
-final class SeedCommand extends BaseSeedCommand
+final class SeedCommand extends TenantSeedCommand
 {
     protected const string MODULE_NAME = LanguagePlugin::ID;
 
