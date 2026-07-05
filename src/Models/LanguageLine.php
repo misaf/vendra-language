@@ -42,5 +42,4 @@ final class LanguageLine extends SpatieLanguageLine
             ...parent::casts(),
         ];
     }
-
 }

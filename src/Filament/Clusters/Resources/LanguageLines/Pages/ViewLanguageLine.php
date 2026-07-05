@@ -26,7 +26,7 @@ final class ViewLanguageLine extends ViewRecord
         return [
             EditAction::make(),
 
-            LocaleSwitcher::make()
+            LocaleSwitcher::make(),
         ];
     }
 }

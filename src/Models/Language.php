@@ -45,13 +45,13 @@ final class Language extends Model implements HasMedia, Sortable
 {
     use BelongsToTenant;
     use HasDefaultActivityLogOptions;
-
     use HasDefaultMediaConversions, InteractsWithMedia {
         HasDefaultMediaConversions::registerMediaConversions insteadof InteractsWithMedia;
     }
 
     /** @use HasFactory<LanguageFactory> */
     use HasFactory;
+
     use LogsActivity;
     use SoftDeletes;
     use SortableTrait;

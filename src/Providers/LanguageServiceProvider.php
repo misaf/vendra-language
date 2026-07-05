@@ -26,7 +26,7 @@ final class LanguageServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasMigrations([
                 'create_languages_table',
-                'add_tenant_id_column_to_language_lines_table'
+                'add_tenant_id_column_to_language_lines_table',
             ])
             ->hasCommands(SeedCommand::class)
             ->hasInstallCommand(function (InstallCommand $command): void {
