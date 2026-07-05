@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
 use Misaf\VendraActivityLog\Concerns\HasDefaultActivityLogOptions;
 use Misaf\VendraLanguage\Database\Factories\LanguageLineFactory;
-use Misaf\VendraTenant\Traits\BelongsToTenant;
+use Misaf\VendraSupport\Traits\BelongsToTenant;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\TranslationLoader\LanguageLine as SpatieLanguageLine;
 

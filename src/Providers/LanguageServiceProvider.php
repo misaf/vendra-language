@@ -12,6 +12,7 @@ use Illuminate\Foundation\Console\AboutCommand;
 use Misaf\VendraLanguage\Console\Commands\SeedCommand;
 use Misaf\VendraLanguage\LanguagePlugin;
 use Misaf\VendraLanguage\Models\Language;
+use Misaf\VendraSupport\Support\TenantSeeders;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -46,6 +47,8 @@ final class LanguageServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        $this->app->make(TenantSeeders::class)->register('vendra-language:seed', priority: 80);
+
         $this->configureLanguageSwitch();
 
         AboutCommand::add('Vendra Language', fn() => ['Version' => 'dev-master']);
