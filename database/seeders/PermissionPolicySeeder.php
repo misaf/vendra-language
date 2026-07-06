@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Misaf\VendraLanguage\Database\Seeders;
 
-use Misaf\VendraLanguage\Enums\LanguagePolicyEnum;
 use Misaf\VendraLanguage\Enums\LanguageLinePolicyEnum;
+use Misaf\VendraLanguage\Enums\LanguagePolicyEnum;
 use Misaf\VendraLanguage\LanguagePlugin;
 use Misaf\VendraSupport\Concerns\RequiresCurrentTenant;
 use Misaf\VendraSupport\Database\Seeders\PermissionPolicySeeder as BasePermissionPolicySeeder;
