@@ -5,46 +5,46 @@ declare(strict_types=1);
 namespace Misaf\VendraLanguage\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Misaf\VendraLanguage\Enums\LanguageLineEnum;
+use Illuminate\Contracts\Auth\Access\Authorizable;
+use Misaf\VendraLanguage\Enums\LanguageLinePolicyEnum;
 use Misaf\VendraLanguage\Models\LanguageLine;
-use Misaf\VendraUser\Models\User;
 
 final class LanguageLinePolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user): bool
+    public function create(Authorizable $user): bool
     {
-        return $user->can(LanguageLineEnum::CREATE);
+        return $user->can(LanguageLinePolicyEnum::CREATE->value);
     }
 
-    public function delete(User $user, LanguageLine $languageLine): bool
+    public function delete(Authorizable $user, LanguageLine $languageLine): bool
     {
-        return $user->can(LanguageLineEnum::DELETE);
+        return $user->can(LanguageLinePolicyEnum::DELETE->value);
     }
 
-    public function deleteAny(User $user): bool
+    public function deleteAny(Authorizable $user): bool
     {
-        return $user->can(LanguageLineEnum::DELETE_ANY);
+        return $user->can(LanguageLinePolicyEnum::DELETE_ANY->value);
     }
 
-    public function replicate(User $user, LanguageLine $languageLine): bool
+    public function replicate(Authorizable $user, LanguageLine $languageLine): bool
     {
-        return $user->can(LanguageLineEnum::REPLICATE);
+        return $user->can(LanguageLinePolicyEnum::REPLICATE->value);
     }
 
-    public function update(User $user, LanguageLine $languageLine): bool
+    public function update(Authorizable $user, LanguageLine $languageLine): bool
     {
-        return $user->can(LanguageLineEnum::UPDATE);
+        return $user->can(LanguageLinePolicyEnum::UPDATE->value);
     }
 
-    public function view(User $user, LanguageLine $languageLine): bool
+    public function view(Authorizable $user, LanguageLine $languageLine): bool
     {
-        return $user->can(LanguageLineEnum::VIEW);
+        return $user->can(LanguageLinePolicyEnum::VIEW->value);
     }
 
-    public function viewAny(User $user): bool
+    public function viewAny(Authorizable $user): bool
     {
-        return $user->can(LanguageLineEnum::VIEW_ANY);
+        return $user->can(LanguageLinePolicyEnum::VIEW_ANY->value);
     }
 }

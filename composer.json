@@ -59,8 +59,12 @@
 	"autoload": {
 		"psr-4": {
 			"Misaf\\VendraLanguage\\": "src/",
+			"Misaf\\VendraLanguage\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
 			"Misaf\\VendraLanguage\\Database\\Factories\\": "database/factories/",
-			"Misaf\\VendraLanguage\\Database\\Seeders\\": "database/seeders/",
 			"Misaf\\VendraLanguage\\Tests\\": "tests/"
 		}
 	},

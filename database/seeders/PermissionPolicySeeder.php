@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Misaf\VendraLanguage\Database\Seeders;
 
-use Misaf\VendraLanguage\Enums\LanguageEnum;
-use Misaf\VendraLanguage\Enums\LanguageLineEnum;
+use Misaf\VendraLanguage\Enums\LanguagePolicyEnum;
+use Misaf\VendraLanguage\Enums\LanguageLinePolicyEnum;
 use Misaf\VendraLanguage\LanguagePlugin;
 use Misaf\VendraSupport\Concerns\RequiresCurrentTenant;
 use Misaf\VendraSupport\Database\Seeders\PermissionPolicySeeder as BasePermissionPolicySeeder;
@@ -29,8 +29,8 @@ final class PermissionPolicySeeder extends BasePermissionPolicySeeder
     protected function policies(): array
     {
         return [
-            ...array_column(LanguageEnum::cases(), 'value'),
-            ...array_column(LanguageLineEnum::cases(), 'value'),
+            ...array_column(LanguagePolicyEnum::cases(), 'value'),
+            ...array_column(LanguageLinePolicyEnum::cases(), 'value'),
         ];
     }
 }

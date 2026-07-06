@@ -5,71 +5,71 @@ declare(strict_types=1);
 namespace Misaf\VendraLanguage\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Misaf\VendraLanguage\Enums\LanguageEnum;
+use Illuminate\Contracts\Auth\Access\Authorizable;
+use Misaf\VendraLanguage\Enums\LanguagePolicyEnum;
 use Misaf\VendraLanguage\Models\Language;
-use Misaf\VendraUser\Models\User;
 
 final class LanguagePolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user): bool
+    public function create(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::CREATE);
+        return $user->can(LanguagePolicyEnum::CREATE->value);
     }
 
-    public function delete(User $user, Language $language): bool
+    public function delete(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::DELETE);
+        return $user->can(LanguagePolicyEnum::DELETE->value);
     }
 
-    public function deleteAny(User $user): bool
+    public function deleteAny(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::DELETE_ANY);
+        return $user->can(LanguagePolicyEnum::DELETE_ANY->value);
     }
 
-    public function forceDelete(User $user, Language $language): bool
+    public function forceDelete(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::FORCE_DELETE);
+        return $user->can(LanguagePolicyEnum::FORCE_DELETE->value);
     }
 
-    public function forceDeleteAny(User $user): bool
+    public function forceDeleteAny(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::FORCE_DELETE_ANY);
+        return $user->can(LanguagePolicyEnum::FORCE_DELETE_ANY->value);
     }
 
-    public function reorder(User $user): bool
+    public function reorder(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::REORDER);
+        return $user->can(LanguagePolicyEnum::REORDER->value);
     }
 
-    public function replicate(User $user, Language $language): bool
+    public function replicate(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::REPLICATE);
+        return $user->can(LanguagePolicyEnum::REPLICATE->value);
     }
 
-    public function restore(User $user, Language $language): bool
+    public function restore(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::RESTORE);
+        return $user->can(LanguagePolicyEnum::RESTORE->value);
     }
 
-    public function restoreAny(User $user): bool
+    public function restoreAny(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::RESTORE_ANY);
+        return $user->can(LanguagePolicyEnum::RESTORE_ANY->value);
     }
 
-    public function update(User $user, Language $language): bool
+    public function update(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::UPDATE);
+        return $user->can(LanguagePolicyEnum::UPDATE->value);
     }
 
-    public function view(User $user, Language $language): bool
+    public function view(Authorizable $user, Language $language): bool
     {
-        return $user->can(LanguageEnum::VIEW);
+        return $user->can(LanguagePolicyEnum::VIEW->value);
     }
 
-    public function viewAny(User $user): bool
+    public function viewAny(Authorizable $user): bool
     {
-        return $user->can(LanguageEnum::VIEW_ANY);
+        return $user->can(LanguagePolicyEnum::VIEW_ANY->value);
     }
 }

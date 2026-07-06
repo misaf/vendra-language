@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Misaf\VendraLanguage\Enums;
 
-enum LanguageEnum: string
+enum LanguagePolicyEnum: string
 {
     case CREATE = 'create-language';
     case DELETE = 'delete-language';
