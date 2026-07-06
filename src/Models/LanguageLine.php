@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
-use Misaf\VendraActivityLog\Concerns\HasDefaultActivityLogOptions;
 use Misaf\VendraLanguage\Database\Factories\LanguageLineFactory;
+use Misaf\VendraSupport\Contracts\ShouldLogActivity;
 use Misaf\VendraSupport\Traits\BelongsToTenant;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\TranslationLoader\LanguageLine as SpatieLanguageLine;
 
 /**
@@ -25,15 +24,13 @@ use Spatie\TranslationLoader\LanguageLine as SpatieLanguageLine;
  */
 #[Hidden(['tenant_id'])]
 #[UseFactory(LanguageLineFactory::class)]
-final class LanguageLine extends SpatieLanguageLine
+final class LanguageLine extends SpatieLanguageLine implements ShouldLogActivity
 {
     use BelongsToTenant;
-    use HasDefaultActivityLogOptions;
 
     /** @use HasFactory<LanguageLineFactory> */
     use HasFactory;
 
-    use LogsActivity;
 
     protected function casts(): array
     {
