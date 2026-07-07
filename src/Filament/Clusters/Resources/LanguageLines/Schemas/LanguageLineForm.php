@@ -11,7 +11,7 @@ use Filament\Schemas\Schema;
 use Illuminate\Validation\Rules\Unique;
 use Livewire\Component as Livewire;
 use Misaf\VendraLanguage\Enums\LanguageLineGroupEnum;
-use Misaf\VendraTenant\Models\Tenant;
+use Misaf\VendraSupport\Support\TenantAwareness;
 
 final class LanguageLineForm
 {
@@ -36,9 +36,7 @@ final class LanguageLineForm
                     ->required()
                     ->unique(
                         ignoreRecord: true,
-                        modifyRuleUsing: function (Unique $rule): void {
-                            $rule->where('tenant_id', Tenant::current()?->id);
-                        },
+                        modifyRuleUsing: fn(Unique $rule): Unique => TenantAwareness::constrainUniqueRule($rule),
                     ),
 
                 KeyValue::make('text')

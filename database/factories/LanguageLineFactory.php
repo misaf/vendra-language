@@ -6,9 +6,10 @@ namespace Misaf\VendraLanguage\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Misaf\VendraLanguage\Enums\LanguageLineGroupEnum;
 use Misaf\VendraLanguage\Models\LanguageLine;
-use Misaf\VendraTenant\Models\Tenant;
+use Misaf\VendraSupport\Support\TenantAwareness;
 
 /**
  * @extends Factory<LanguageLine>
@@ -22,17 +23,23 @@ final class LanguageLineFactory extends Factory
         $group = $this->faker->randomElement(LanguageLineGroupEnum::cases());
 
         return [
-            'tenant_id' => Tenant::factory(),
-            'group'     => $group->value,
-            'key'       => fake()->word(),
-            'text'      => ['en' => fake()->word()],
+            'group' => $group->value,
+            'key'   => fake()->word(),
+            'text'  => ['en' => fake()->word()],
         ];
     }
 
-    public function forTenant(Tenant|int $tenant): static
+    /**
+     * No-op without a tenant provider, since there is no `tenant_id` column.
+     */
+    public function forTenant(Model|int $tenant): static
     {
-        $tenantId = $tenant instanceof Tenant ? $tenant->id : $tenant;
+        if ( ! TenantAwareness::enabled()) {
+            return $this;
+        }
 
-        return $this->state(fn(): array => ['tenant_id' => $tenantId]);
+        return $this->state(fn(): array => [
+            'tenant_id' => $tenant instanceof Model ? $tenant->getKey() : $tenant,
+        ]);
     }
 }

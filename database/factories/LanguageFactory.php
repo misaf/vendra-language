@@ -6,9 +6,10 @@ namespace Misaf\VendraLanguage\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Misaf\VendraLanguage\Models\Language;
-use Misaf\VendraTenant\Models\Tenant;
+use Misaf\VendraSupport\Support\TenantAwareness;
 
 /**
  * @extends Factory<Language>
@@ -21,7 +22,6 @@ final class LanguageFactory extends Factory
         $isoCode = $this->faker->unique()->languageCode();
 
         return [
-            'tenant_id'   => Tenant::factory(),
             'name'        => $isoCode,
             'description' => $this->faker->realTextBetween(100, 200),
             'slug'        => Str::slug($isoCode),
@@ -32,11 +32,18 @@ final class LanguageFactory extends Factory
         ];
     }
 
-    public function forTenant(Tenant|int $tenant): static
+    /**
+     * No-op without a tenant provider, since there is no `tenant_id` column.
+     */
+    public function forTenant(Model|int $tenant): static
     {
-        $tenantId = $tenant instanceof Tenant ? $tenant->id : $tenant;
+        if ( ! TenantAwareness::enabled()) {
+            return $this;
+        }
 
-        return $this->state(fn(): array => ['tenant_id' => $tenantId]);
+        return $this->state(fn(): array => [
+            'tenant_id' => $tenant instanceof Model ? $tenant->getKey() : $tenant,
+        ]);
     }
 
     public function enabled(): static
