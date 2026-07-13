@@ -1,6 +1,5 @@
 {
     "name": "misaf/vendra-language",
-    "version": "0.0.7",
     "description": "Multi-language support system with tenant-aware languages and translation lines",
     "keywords": [
         "laravel",
@@ -64,13 +63,13 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Misaf\\VendraLanguage\\Providers\\LanguageServiceProvider"
             ]
-        },
-        "branch-alias": {
-            "dev-master": "13.x-dev"
         }
     },
     "scripts": {
