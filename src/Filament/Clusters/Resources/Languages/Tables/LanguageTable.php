@@ -61,8 +61,8 @@ final class LanguageTable
                         ->hidden(fn(Language $record): bool => ! $record->is_default),
                 ]),
 
-            ToggleColumn::make('status')
-                ->label(__('vendra-language::attributes.status'))
+            ToggleColumn::make('active')
+                ->label(__('vendra-language::attributes.active'))
                 ->onIcon(Heroicon::Bolt)
                 ->disabled(fn(Language $record): bool => ! LanguageResource::canEdit($record)),
 
@@ -89,8 +89,6 @@ final class LanguageTable
                 }),
 
             TextColumn::make('created_at')
-                ->alignCenter()
-                ->badge()
                 ->extraCellAttributes(['dir' => 'ltr'])
                 ->label(__('vendra-language::attributes.created_at'))
                 ->sinceTooltip()
@@ -101,8 +99,6 @@ final class LanguageTable
                 ),
 
             TextColumn::make('updated_at')
-                ->alignCenter()
-                ->badge()
                 ->extraCellAttributes(['dir' => 'ltr'])
                 ->label(__('vendra-language::attributes.updated_at'))
                 ->sinceTooltip()
@@ -119,8 +115,8 @@ final class LanguageTable
                 [
                     QueryBuilder::make()
                         ->constraints([
-                            BooleanConstraint::make('status')
-                                ->label(__('vendra-language::attributes.status')),
+                            BooleanConstraint::make('active')
+                                ->label(__('vendra-language::attributes.active')),
 
                             BooleanConstraint::make('is_default')
                                 ->label(__('vendra-language::attributes.is_default')),
